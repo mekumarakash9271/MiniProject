@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Voting System - Voter Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 8px; width: 350px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
+        input, select, button { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #007BFF; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        button:hover { background: #0056b3; }
+        #message { margin-top: 15px; font-weight: bold; text-align: center; }
+        .footer-link { text-align: center; margin-top: 20px; display: block; font-size: 14px; color: #007BFF; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Secure Voting</h2>
+        <label for="voterId">Voter ID:</label>
+        <input type="text" id="voterId" placeholder="Enter VOTER01 or VOTER02">
+        
+        <label for="candidateSelect">Choose Candidate:</label>
+        <select id="candidateSelect"></select>
+
+        <button onclick="castVote()">Cast Vote</button>
+        <p id="message"></p>
+        
+        <a href="admin.html" class="footer-link">Go to Admin Dashboard</a>
+    </div>
+
+    <script>
+        async function fetchCandidates() {
+            try {
+                const response = await fetch('/candidates');
+                const candidates = await response.json();
+                const selectBox = document.getElementById('candidateSelect');
+                selectBox.innerHTML = '';
+                candidates.forEach(c => {
+                    let option = document.createElement('option');
+                    option.value = c.id;
+                    option.textContent = c.name;
+                    selectBox.appendChild(option);
+                });
+            } catch (err) {
+                console.error("Error loading candidates:", err);
+            }
+        }
+
+        async function castVote() {
+            const voterId = document.getElementById('voterId').value.trim();
+            const candidateId = document.getElementById('candidateSelect').value;
+            const messageElement = document.getElementById('message');
+
+            if (!voterId) {
+                messageElement.textContent = "Please enter your Voter ID.";
+                messageElement.style.color = "red";
+                return;
+            }
+
+            try {
+                const response = await fetch('/vote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ voterId, candidateId })
+                });
+
+                const data = await response.json();
+                messageElement.textContent = data.message;
+                messageElement.style.color = response.ok ? "green" : "red";
+            } catch (err) {
+                messageElement.textContent = "Network error occurred.";
+                messageElement.style.color = "red";
+            }
+        }
+
+        fetchCandidates();
+    </script>
+</body>
+</html>
