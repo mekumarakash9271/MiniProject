@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header"><i class="fa-solid fa-check-double"></i> VeriBallot Admin</div>
+      <div class="user-profile">
+        <img src="" alt="User">
+        <div class="user-info"><h4>VeriBallot Admin</h4><span class="status-online"><i class="fa-solid fa-circle"></i> Online</span></div>
+      </div>
+      <nav class="sidebar-menu">
+        <div class="menu-label">REPORTS</div>
+        <a href="dashboard.html" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="votes.html" class="nav-item"><i class="fa-solid fa-check-to-slot"></i> Votes</a>
+        <div class="menu-label">MANAGE</div>
+        <a href="voters.html" class="nav-item"><i class="fa-solid fa-users"></i> Voters</a>
+        <a href="positions.html" class="nav-item"><i class="fa-solid fa-sitemap"></i> Positions</a>
+        <a href="candidates.html" class="nav-item"><i class="fa-solid fa-user-tie"></i> Candidates</a>
+        <div class="menu-label">SETTINGS</div>
+        <a href="ballot.html" class="nav-item"><i class="fa-solid fa-list-ol"></i> Ballot Position</a>
+        <a href="admin_login.html" class="nav-item"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <span class="breadcrumb-title">Dashboard</span>
+      </header>
+
+      <section class="view-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-sitemap"></i></div>
+            <div class="stat-data"><h3>0</h3><p>No. of Positions</p></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="stat-data"><h3>0</h3><p>No. of Candidates</p></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-data"><h3>0</h3><p>Total Voters</p></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon orange"><i class="fa-solid fa-box-archive"></i></div>
+            <div class="stat-data"><h3>0</h3><p>Voters Voted</p></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-chart-column"></i> Votes Tally - Class Coordinator</h3>
+            <button class="btn btn-secondary" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+          </div>
+          <div class="card-body">
+            <canvas id="dashboardChart" height="100"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>

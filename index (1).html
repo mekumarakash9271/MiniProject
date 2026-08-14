@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Voting System - Voter Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="brand-logo">
+        <i class="fa-solid fa-vote-yea"></i>
+        <span>VeriBallot Vote</span>
+      </div>
+      <h2>Online Voting System</h2>
+      <p class="subtitle">Sign in to start your voting session</p>
+
+      <form id="voterLoginForm">
+        <div class="form-group">
+          <label><i class="fa-solid fa-id-card"></i> Voter's ID</label>
+          <input type="text" id="voterId" placeholder="Enter Voter ID" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fa-solid fa-lock"></i> Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
